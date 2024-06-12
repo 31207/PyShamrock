@@ -1,3 +1,4 @@
 .idea/
 venv_arch/
 start.sh
+.gitignore
