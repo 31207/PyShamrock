@@ -5,8 +5,6 @@ import yaml
 import random
 import subprocess
 
-groupWhiteList = (711674260,)
-
 class Mybot(bot):
     async def on_privateMsgEvent(self, data: PrivateMsg):
         if data.user_id != 1692038362:
@@ -55,6 +53,7 @@ async def init(url: str):
         log.info('正在尝试访问shamrock端...')
         ret = requests.post(f"{url}/get_login_info")
         print(ret.text)
+        botqq = dict(ret.text)['user_id']
         log.info('shamrock访问正常')
         return ret.text
     except Exception as e:
@@ -69,7 +68,10 @@ if __name__ == '__main__':
     log.debug("test")
     with open("./config.yaml", 'r') as f:
         config = yaml.safe_load(f)
-
+        print(config)
+    groupWhiteList = config['whitelist']
+    admin = config['admin']
+    user_id = 0
     # 创建事件循环对象
     loop = asyncio.get_event_loop()
     # 运行异步函数

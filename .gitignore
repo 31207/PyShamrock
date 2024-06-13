@@ -2,3 +2,4 @@
 venv_arch/
 start.sh
 .gitignore
+config.yaml
